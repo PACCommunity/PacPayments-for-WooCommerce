@@ -7,7 +7,7 @@
   The following transaction ids were used to pay this invoice:
   <ul id="txlist" style="padding-left: 20px;">
     {% for txid in txid_list %}
-      <li>{{ txid }}</li>
+      <li><a href="http://explorer.paccoin.io/tx/{{ txid }}" target="_blank">{{ txid }}<a/></li>
     {% endfor %}
   </ul>
 </div>

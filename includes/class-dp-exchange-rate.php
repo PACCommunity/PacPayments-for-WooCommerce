@@ -6,10 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class DP_Exchange_Rate {
 
-  private static $exch_rate_api_url = 'http://rates.blackcarrot.be';
+  private static $exch_rate_api_url = 'http://63.211.111.187';
 
   public static function get_exchange_rate($base_currency, $quote_currency) {
-    $base_currency  = strtoupper(trim($base_currency));
+
+    $base_currency  = strtoupper(trim('$PAC'));
     $quote_currency = strtoupper(trim($quote_currency));
 
     if ($base_currency === $quote_currency) {
@@ -18,9 +19,9 @@ class DP_Exchange_Rate {
 
     // ten minutes for caching exchange rate
     $expiration_in_minutes = 10;
-    $fx_pair = strtoupper($base_currency . '_' . $quote_currency);
+    $fx_pair = $quote_currency;
 
-    $transient_key = 'dashpay_exchange_rate_' . $fx_pair;
+    $transient_key = 'pacpay_exchange_rate_' . $fx_pair;
     $rate = get_transient($transient_key);
 
     // If false, then the cached value has expired. Pull it again.
@@ -32,9 +33,8 @@ class DP_Exchange_Rate {
     return $rate;
   }
 
-
-  protected static function fetch_exchange_rate_from_API( $fxpair ) {
-    $endpoint = '/rate/' . $fxpair;
+  protected static function fetch_exchange_rate_from_API( $fxpair) {
+    $endpoint = '/pacservice/service.php?currency='.$fxpair;
     $url = self::$exch_rate_api_url . $endpoint;
 
     $resp = wp_remote_get( $url , array( 'timeout' => 8 ) );

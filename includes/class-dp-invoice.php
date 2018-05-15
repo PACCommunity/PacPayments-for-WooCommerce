@@ -242,7 +242,7 @@ class DP_Invoice {
   }
 
   private function expire() {
-    $this->order->update_status('cancelled', __('Invoice has Expired.', 'dashpay-woocommerce') );
+    $this->order->update_status('cancelled', __('Invoice has Expired.', 'pacpay-woocommerce') );
 
     // if Invoice expired and address has no transactions, re-use the address
     if ( 0 === count($this->txidList) ) {
@@ -266,14 +266,14 @@ class DP_Invoice {
     $this->remove_reuse_flag();
     $this->clear_address_meta();
 
-    $this->order->add_order_note( __('Order Paid in Full', 'dashpay-woocommerce') );
+    $this->order->add_order_note( __('Order Paid in Full', 'pacpay-woocommerce') );
 
     // a comma-separated list of all TXids used to fund this order
     $tx_record = join(',', $this->txidList);
     $this->order->payment_complete($tx_record);
 
     // trigger the email...
-    do_action( 'dashpayments_invoice_paid_notification', $this->orderId );
+    do_action( 'pacpayments_invoice_paid_notification', $this->orderId );
 
     return;
   }
@@ -282,7 +282,7 @@ class DP_Invoice {
     $this->markAsPaid();
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Order OverPaid by [%s] Dash", 'dashpay-woocommerce'),
+        esc_html__("Order OverPaid by [%s] Pac", 'pacpay-woocommerce'),
             $this->remainingBalance() * -1
       )
     );
@@ -293,8 +293,8 @@ class DP_Invoice {
     // status remains awaiting payment, simply add a note
     $this->order->add_order_note(
       sprintf(
-        esc_html__("Order UnderPaid - Balance Remaining = [%s] Dash",
-            'dashpay-woocommerce'),
+        esc_html__("Order UnderPaid - Balance Remaining = [%s] Pac",
+            'pacpay-woocommerce'),
         $this->remainingBalance()
       )
     );

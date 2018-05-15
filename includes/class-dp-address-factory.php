@@ -38,7 +38,7 @@ class DP_Address_Factory {
   }
 
   protected function last_used_index_key_name() {
-    return 'dashpay_last_' .
+    return 'pacpay_last_' .
       $this->project . '_xpub_' .
       $this->xpub_hash . '_index';
   }
@@ -215,8 +215,6 @@ class DP_Address_Factory {
     $network = $factory::$network_method();
     Bitcoin::setNetwork( $network );
 
-    // Can enable other derivation paths for other wallets in the future (but
-    // Dash-BreadWallet's derivation is apparently broken...)
     $path = "0/" . $key_index;
 
     $keychain = HierarchicalKeyFactory::fromExtended($xpub_key, $network);

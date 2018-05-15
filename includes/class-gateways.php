@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class DP_Gateways {
 
     public static $gateways = array(
-        'Dash' => 'dash',
+        'Pac' => 'pac',
     );
 
     public static function gateway_id( $currency ) {

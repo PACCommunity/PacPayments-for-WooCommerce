@@ -6,25 +6,28 @@
   Incoming transactions detected:
   <ul id="txlist" style="padding-left: 20px;">
     {% for txid in txid_list %}
-      <li>{{ txid }}</li>
+     <li><a href="http://explorer.paccoin.io/tx/{{ txid }}" target="_blank">{{ txid }}<a/></li>
     {% endfor %}
   </ul>
 
-  This store requires that transactions have {{ required_confirmations }} confirmations on the Dash network before being processed. Once this number has been reached, payment will be confirmed.
+  This store requires that transactions have {{ required_confirmations }} confirmations on the $PAC network before being processed. Once this number has been reached, payment will be confirmed.
 </div>
 {% endif %}
 
-<table>
+<table style="box-shadow: 1px 1px 10px #ddd;">
 <tr>
-  <td colspan="4">Please send your payment as follows:</td>
+  <td colspan="4" style="border-radius:10px 10px 0px 0px; color:black;font-weight:700; font-family:'Montserrat';"><img style="margin: auto;"width="200" height="562" src="https://paccoin.net/wp-content/uploads/2018/01/PAC_Logo_Transparent.png" class="custom-logo" alt="PACcoin"></td>
+</tr>
+<tr>
+  <td colspan="4" style="color:black;font-weight:700;background:#F4E648; font-family:'Montserrat';">Please send your payment as follows:</td>
 </tr>
 <tr>
   <td colspan="1" style="vertical-align:middle;">
-  Amount <strong>Dash</strong>:
+  Amount <strong>$PAC</strong>:
   </td>
   <td colspan="3">
-    <div style="border:1px solid #FCCA09;padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#CC0000;font-weight: bold;font-size: 120%;">
-        {{ payment_amount }}
+  <div style="padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#60CCAD;font-weight: bold;font-size: 120%;">
+    <input type="text" onclick="selectItAll()" value={{ payment_amount }} id="myInputAmount"><button id="myInputButton" onclick="copyAmount()" >Copy amount</button>
     </div>
   </td>
 </tr>
@@ -33,19 +36,19 @@
   Address:
   </td>
   <td colspan="3">
-    <div style="border:1px solid #FCCA09;padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#555;font-weight: bold;font-size: 120%;">
-      {{ payment_address }}
+  <div style="padding:2px 6px;margin:2px;background-color:#FCF8E3;border-radius:4px;color:#555;font-weight: bold;font-size: 120%;">
+    <input type="text" onclick="selectItAll()" value={{ payment_address }} id="myInput"><button id="myInputButton" onclick="copyAddress()" >Copy address</button>
     </div>
     </td>
 </tr>
 <tr>
-<td colspan="1" style="vertical-align:middle;">
-    QR Code:
+<td colspan="1" style="vertical-align:middle;,font-family: 'Montserrat';,font-size: 14px;">
+    Scan QR code:
 </td>
 <td colspan="3">
-  <div style="border:1px solid #FCCA09;padding:5px;margin:2px;background-color:#FCF8E3;border-radius:4px;">
-    <a href="dash:{{ payment_address }}?amount={{ payment_amount }}">
-    <img src="{{ qr_code_url }}" alt="" title="" style="vertical-align:middle;border:1px solid #888;">
+  <div style="padding:5px;margin:2px;border-radius:4px;">
+    <a href="paccoin:{{ payment_address }}?amount={{ payment_amount }}">
+    <img src="{{ qr_code_url }}" alt="" title="" style="margin:auto;box-shadow: 1px 1px 10px #ddd;,border-radius:6px;">
     </a>
   </div>
 </td>
@@ -58,3 +61,55 @@ Please note:
   <li>As soon as your payment is received, you will receive an email confirmation with order delivery details.</li>
   <li>You may send multiple payments in order to reach the total required amount.</li>
 </ol>
+<script>
+function selectItAll() {
+  var copyAddress= document.getElementById('myInput');
+  copyAddress.select();
+  document.execCommand("Copy");
+}
+function copyAddress() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  document.execCommand("Copy");
+}
+function copyAmount() {
+  var copyText = document.getElementById("myInputAmount");
+  copyText.select();
+  document.execCommand("Copy");
+}
+function selectAmount() {
+  var copyAddress= document.getElementById('myInputAmount');
+  copyAddress.select();
+  document.execCommand("Copy");
+}
+</script>
+<style>
+input#myInput,input#myInputAmount {
+    background-color: transparent;
+    width: 75%;
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.125);
+}
+#myInputButton{
+  font-size:14px;
+  background-color: #60CCAD;
+  border-color: #60CCAD;
+  border-radius: 4px;
+  color: white;
+  transition: all 0.3s ease 0s;
+}
+#myInputButton:hover{
+background-color:#027d5a;
+}
+table td,
+table th {
+    text-align: center;
+    font-family: montserrat;
+    color:black;
+}
+table td{
+  font-weight: 700;
+}
+table{
+    border-radius: 10px;
+}
+</style>

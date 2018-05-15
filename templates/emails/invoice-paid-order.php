@@ -12,7 +12,7 @@
   */
  do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
- <p><?php printf( __( 'Payment for order #%d to address %s has been received in the amount of %s %s.<br>Please take any necessary action for fulfillment and mark as complete. If the order consists entirely of virtual merchandise managed by WooCommerce, no further action is necessary.<br>The order is as follows:', 'dashpay-woocommerce' ), $order->id, $invoice->address, $invoice->orderTotal, $invoice->paymentCurrency ); ?></p>
+ <p><?php printf( __( 'Payment for order #%d to address %s has been received in the amount of %s %s.<br>Please take any necessary action for fulfillment and mark as complete. If the order consists entirely of virtual merchandise managed by WooCommerce, no further action is necessary.<br>The order is as follows:', 'pacpay-woocommerce' ), $order->id, $invoice->address, $invoice->orderTotal, $invoice->paymentCurrency ); ?></p>
 
  <?php
 

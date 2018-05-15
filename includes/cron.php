@@ -31,7 +31,7 @@ function dp_check_unpaid_orders() {
 function process_order( $order_id ) {
   $invoice = new DP_Invoice( $order_id );
 
-  $mutex_key = 'dashpay_processing_' . $order_id;
+  $mutex_key = 'pacpay_processing_' . $order_id;
   $is_processing = get_transient($mutex_key);
 
   // If false, then not processing this order

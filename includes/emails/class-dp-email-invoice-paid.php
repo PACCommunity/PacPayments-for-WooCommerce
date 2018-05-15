@@ -13,8 +13,8 @@ if ( ! class_exists( 'DP_Email_Invoice_Paid' ) ) :
  *
  * @class       DP_Email_Invoice_Paid
  * @version     0.0.1
- * @package     DashPayments/Classes/Emails
- * @author      BlackCarrotVentures
+ * @package     PacPay/Classes/Emails
+ * @author      BlackCarrotVentures, The Pac Team
  * @extends     WC_Email
  */
 class DP_Email_Invoice_Paid extends WC_Email {
@@ -24,16 +24,16 @@ class DP_Email_Invoice_Paid extends WC_Email {
      */
     public function __construct() {
         $this->id               = 'dp_invoice_paid';
-        $this->title            = __( 'Invoice paid', 'dashpay-woocommerce' );
-        $this->description      = __( 'Invoice paid emails are sent to the store admin when orders have been Paid in Full.', 'dashpay-woocommerce' );
-        $this->heading          = __( 'Invoice paid', 'dashpay-woocommerce' );
-        $this->subject          = __( '[{site_title}] Invoice paid ({order_number})', 'dashpay-woocommerce' );
+        $this->title            = __( 'Invoice paid', 'pacpay-woocommerce' );
+        $this->description      = __( 'Invoice paid emails are sent to the store admin when orders have been Paid in Full.', 'pacpay-woocommerce' );
+        $this->heading          = __( 'Invoice paid', 'pacpay-woocommerce' );
+        $this->subject          = __( '[{site_title}] Invoice paid ({order_number})', 'pacpay-woocommerce' );
         $this->template_html    = 'emails/invoice-paid-order.php';
         $this->template_plain   = 'emails/plain/invoice-paid-order.php';
         $this->template_base    = DP()->template_path();
 
         // Triggers for this email
-        add_action( 'dashpayments_invoice_paid_notification', array( $this, 'trigger' ) );
+        add_action( 'pacpayments_invoice_paid_notification', array( $this, 'trigger' ) );
 
         // Call parent constructor
         parent::__construct();
@@ -102,39 +102,39 @@ class DP_Email_Invoice_Paid extends WC_Email {
     public function init_form_fields() {
         $this->form_fields = array(
             'enabled' => array(
-                'title'         => __( 'Enable/Disable', 'dashpay-woocommerce' ),
+                'title'         => __( 'Enable/Disable', 'pacpay-woocommerce' ),
                 'type'          => 'checkbox',
-                'label'         => __( 'Enable this email notification', 'dashpay-woocommerce' ),
+                'label'         => __( 'Enable this email notification', 'pacpay-woocommerce' ),
                 'default'       => 'yes'
             ),
             'recipient' => array(
-                'title'         => __( 'Recipient(s)', 'dashpay-woocommerce' ),
+                'title'         => __( 'Recipient(s)', 'pacpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'dashpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
+                'description'   => sprintf( __( 'Enter recipients (comma separated) for this email. Defaults to <code>%s</code>.', 'pacpay-woocommerce' ), esc_attr( get_option('admin_email') ) ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'subject' => array(
-                'title'         => __( 'Subject', 'dashpay-woocommerce' ),
+                'title'         => __( 'Subject', 'pacpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'dashpay-woocommerce' ), $this->subject ),
+                'description'   => sprintf( __( 'This controls the email subject line. Leave blank to use the default subject: <code>%s</code>.', 'pacpay-woocommerce' ), $this->subject ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'heading' => array(
-                'title'         => __( 'Email Heading', 'dashpay-woocommerce' ),
+                'title'         => __( 'Email Heading', 'pacpay-woocommerce' ),
                 'type'          => 'text',
-                'description'   => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'dashpay-woocommerce' ), $this->heading ),
+                'description'   => sprintf( __( 'This controls the main heading contained within the email notification. Leave blank to use the default heading: <code>%s</code>.', 'pacpay-woocommerce' ), $this->heading ),
                 'placeholder'   => '',
                 'default'       => '',
                 'desc_tip'      => true
             ),
             'email_type' => array(
-                'title'         => __( 'Email type', 'dashpay-woocommerce' ),
+                'title'         => __( 'Email type', 'pacpay-woocommerce' ),
                 'type'          => 'select',
-                'description'   => __( 'Choose which format of email to send.', 'dashpay-woocommerce' ),
+                'description'   => __( 'Choose which format of email to send.', 'pacpay-woocommerce' ),
                 'default'       => 'html',
                 'class'         => 'email_type wc-enhanced-select',
                 'options'       => $this->get_email_type_options(),
@@ -147,4 +147,3 @@ class DP_Email_Invoice_Paid extends WC_Email {
 endif;
 
 return new DP_Email_Invoice_Paid();
-

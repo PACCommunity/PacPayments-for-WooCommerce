@@ -17,10 +17,10 @@ require_once(dirname(DP_PLUGIN_FILE) . '/vendor/autoload.php');
 class CoinUtil {
 
   private static $VERSION_PREFIXES = [
-    'drkv' => '02fe52f8',
-    'drkp' => '02fe52cc',
-    'DRKV' => '3a8061a0',
-    'DRKP' => '3a805837',
+    'drkv' => '0488b21e',
+    'drkp' => '0488ade4',
+    'DRKV' => '043587cf',
+    'DRKP' => '04358394',
     'xpub' => '0488b21e',
     'xprv' => '0488ade4',
     'tpub' => '043587cf',
@@ -29,17 +29,11 @@ class CoinUtil {
 
   // needed for identification of different BIP32 key types
   private static $VERSION_BYTES_KEY = array(
-    // Dash
-    '02fe52f8' => array( 'project' => 'dash', 'type' => 'public', 'network' => 'mainnet'),
-    '02fe52cc' => array( 'project' => 'dash', 'type' => 'private', 'network' => 'mainnet'),
-    '3a8061a0' => array( 'project' => 'dash', 'type' => 'public', 'network' => 'testnet'),
-    '3a805837' => array( 'project' => 'dash', 'type' => 'private', 'network' => 'testnet'),
-
-    // Bitcoin
-    '0488b21e' => array( 'project' => 'bitcoin', 'type' => 'public', 'network' => 'mainnet'),
-    '0488ade4' => array( 'project' => 'bitcoin', 'type' => 'private', 'network' => 'mainnet'),
-    '043587cf' => array( 'project' => 'bitcoin', 'type' => 'public', 'network' => 'testnet'),
-    '04358394' => array( 'project' => 'bitcoin', 'type' => 'private', 'network' => 'testnet'),
+    // Pac
+    '0488b21e' => array( 'project' => 'pac', 'type' => 'public', 'network' => 'mainnet'),
+    '0488ade4' => array( 'project' => 'pac', 'type' => 'private', 'network' => 'mainnet'),
+    '043587cf' => array( 'project' => 'pac', 'type' => 'public', 'network' => 'testnet'),
+    '04358394' => array( 'project' => 'pac', 'type' => 'private', 'network' => 'testnet'),
   );
 
   public static function decode_xkey_header_bytes( $version ) {

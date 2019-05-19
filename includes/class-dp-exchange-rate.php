@@ -6,8 +6,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class DP_Exchange_Rate {
 
-  private static $exch_rate_api_url = 'http://63.211.111.187';
-
+  private static $exch_rate_api_url = 'https://www.wetakeblockchain.com';
+    
   public static function get_exchange_rate($base_currency, $quote_currency) {
 
     $base_currency  = strtoupper(trim('$PAC'));
@@ -34,7 +34,7 @@ class DP_Exchange_Rate {
   }
 
   protected static function fetch_exchange_rate_from_API( $fxpair) {
-    $endpoint = '/pacservice/service.php?currency='.$fxpair;
+    $endpoint = '/paccoin/pacpayservice/service.php?currency='.$fxpair;
     $url = self::$exch_rate_api_url . $endpoint;
 
     $resp = wp_remote_get( $url , array( 'timeout' => 8 ) );
